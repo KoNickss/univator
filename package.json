@@ -1,0 +1,19 @@
+{
+  "name": "univator",
+  "version": "1.1.2",
+  "description": "Microsoft Product Activator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Puly <ioachim.radu@cafelutza.cf> (https://cafelutza.cf/)",
+  "homepage": "https://cafelutza.cf",
+  "license": "0BSD",
+  "devDependencies": {
+    "electron": "^6.1.12",
+    "electron-builder": "^23.6.0"
+  },
+  "dependencies": {
+
+  }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white" bg-[url('../../img/bground1.jpg')]>
+    <div class="md:max-w-[70vw] ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 md:w-2/3 items-center justify-center text-center">
+                <p class="text-3xl pb-10 font-extrabold tracking-wide">Activate Product</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Last Step, press here to confirm you want to connect to the e-KMS server, compile and install a activation certificate (might take a little while). A restart is recommended afterwards.</p>
+                
+                <div class="text-center text-white">
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ok">Activate Windows →<p class="text-[0.5rem] md:text-xs">admin required</p></button>
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+    <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
+       
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = '../setKMS/index.html';">
+            <span class="hidden md:inline">Cancel</span>
+        </button>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron');
+
+    document.getElementById('ok').addEventListener("click", function(){
+
+        ipcRenderer.send("activateWindows");
+        location.href = "./done.html";
+
+    });
+
+</script>
+
+</html>

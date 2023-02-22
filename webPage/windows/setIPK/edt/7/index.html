@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white" bg-[url('../../img/bground1.jpg')]>
+    <div class="md:max-w-[70vw] ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 md:w-2/3 items-center justify-center text-center">
+                <p class="text-3xl pb-10 font-extrabold tracking-wide">Product Key Gen</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Select the appropriate windows edition you have</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Press the button to automatically generate and install a generic KMS product key. <span class="font-bold">Windows 7 Home and Ultimate are not supported, but can be easily activated via phone for free using generic license keys.</span></p>
+                
+                <div class="text-center text-white">
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="pro">Pro</button>
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ent">Enterprise</button>
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+    <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
+       
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = '../../ver/index.html';">
+            <span class="hidden md:inline">Back</span>
+        </button>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron');
+
+    document.getElementById("pro").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4");
+        location.href = "../../../activate/index.html";
+    });
+
+    document.getElementById("ent").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "33PXH-7Y6KF-2VJC9-XBBR8-HVTHH");
+        location.href = "../../../activate/index.html";
+    });
+
+
+</script>
+
+</html>

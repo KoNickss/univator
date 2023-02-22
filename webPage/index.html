@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center bg-[url('../img/bground1.jpg')] bg-cover text-white">
+    <div class="md:max-w-[70vw] ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 items-center justify-center text-center">
+                <p class="text-[3em] pb-10 font-black tracking-wide">Univator app</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Microsoft Product Activator</p>
+                
+                <div class="text-center text-white">
+                    <div class="kmscontainer">
+                        <div class="windows pr-5">
+                            <button type="button" class="backdrop-blur-md bg-transparent rounded-xl w-full my-2 py-5 my-2 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" onclick="location.href = './windows/setKMS/index.html';"><img class="w-4/5 ml-auto mr-auto pb-7" src="img/windows.png">windows →</button>
+                        </div>
+                        <div class="office pl-5">
+                            <button type="button" class="backdrop-blur-md bg-transparent rounded-xl w-full my-2 py-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" onclick="location.href = './office/setKMS/index.html';"><img class="w-4/5 ml-auto mr-auto pb-7" src="img/office.png">office →</button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+    <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = './windows/setKMS/about/index.html';">
+            <span class="hidden md:inline">About</span>
+        </button>
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = './opts/index.html';">
+            <span class="hidden md:inline">Options</span>
+        </button>
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" id="opensvpage">
+            <span class="hidden md:inline">Server</span>
+        </button>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron')
+
+    document.getElementById('opensvpage').addEventListener("click", function(){
+
+        ipcRenderer.send("openServerPage");
+
+    });
+
+</script>
+
+</html>
