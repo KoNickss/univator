@@ -1,10 +1,13 @@
-all: linux windows
+all: linux windows node_modules
+
+node_modules:
+	npm install
 
 linux:
-	node ./node_modules/electron-builder/cli.js build --linux appImage
+	npx electron-builder build --linux appImage
 
 windows:
-	node ./node_modules/electron-builder/cli.js build --win portable
+	npx electron-builder build --win portable
 
 
 stylesheet:

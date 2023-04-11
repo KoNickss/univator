@@ -10,10 +10,7 @@
   "homepage": "https://cafelutza.cf",
   "license": "0BSD",
   "devDependencies": {
-    "electron": "^6.1.12",
-    "electron-builder": "^23.6.0"
-  },
-  "dependencies": {
-
+    "electron": "^24.1.0",
+    "electron-builder": "^24.2.0"
   }
 }
