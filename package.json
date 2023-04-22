@@ -1,6 +1,6 @@
 {
   "name": "univator",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Microsoft Product Activator",
   "main": "main.js",
   "scripts": {

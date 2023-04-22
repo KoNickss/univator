@@ -30,7 +30,7 @@ function getCertDetails(){
 }
 
 function activateWindows(){
-  exec("powershell start-process powershell -verb runas {slmgr /skms " + kmsServer + " ; slmgr /ipk " + windowsProductKey + " ; sleep 3 ; slmgr /ato}")
+  exec("powershell start-process powershell -verb runas {slmgr /skms " + kmsServer + " ; slmgr /ipk " + windowsProductKey + " ; sleep 3 ; slmgr /ato ; sleep 1 ; start ms-settings:activation}")
   //dialog.showErrorBox('Transparency Mode Command:', 'RUN THIS: powershell start-process powershell -verb runas {slmgr /skms ' + kmsServer + ' ; slmgr /ipk ' + productKey + ' ; sleep 3 ; slmgr /ato}') 
 }
 
@@ -67,6 +67,10 @@ function uninstallCert(){
   console.log("uninstalled cert")
 }
 
+function activationSettings(){
+  exec("start ms-settings:activation");
+}
+
 ipcMain.on("getCertDetails", getCertDetails)
 
 ipcMain.on("setKMS", (event, response) => {
@@ -92,6 +96,8 @@ ipcMain.on("downloadOffice19", downloadOffice19)
 ipcMain.on("uninstallCert", uninstallCert)
 
 ipcMain.on("openServerPage", openServerPage)
+
+ipcMain.on("activationSettings", activationSettings)
 
 app.whenReady().then(() => {
   createWindow()
