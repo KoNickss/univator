@@ -54,8 +54,16 @@ function downloadOffice21(){
   shell.openExternal("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2021Retail.img")
 }
 
+function downloadOffice21_o(){
+  shell.openExternal("https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA")
+}
+
 function downloadOffice19(){
   shell.openExternal("https://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2019Retail.img")
+}
+
+function downloadOffice19_o(){
+  shell.openExternal("https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=en-us&version=O16GA")
 }
 
 function openServerPage(){
@@ -91,7 +99,11 @@ ipcMain.on("activateOffice19", activateOffice19)
 
 ipcMain.on("downloadOffice21", downloadOffice21)
 
+ipcMain.on("downloadOffice21-o", downloadOffice21_o)
+
 ipcMain.on("downloadOffice19", downloadOffice19)
+
+ipcMain.on("downloadOffice19-o", downloadOffice19_o)
 
 ipcMain.on("uninstallCert", uninstallCert)
 

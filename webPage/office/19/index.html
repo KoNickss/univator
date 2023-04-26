@@ -17,7 +17,10 @@
                 <p class="text-md md:text-xl font-normal tracking-wide pb-10">After downloading the .img file, open it and run 'Setup', after installation is done you can activate it using the tool below</p>
                 
                 <div class="text-center text-white">
-                    <button type="button" class="rounded-xl w-full bg-[#283F3B] my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="download">Download Office from Microsoft →</button>
+                    <button type="button" class="rounded-xl w-full bg-[#283F3B] my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="downloadonline">Use the Online Installer →</button>
+
+                    <button type="button" class="rounded-xl w-full bg-[#283F3B] my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="download">Download Office from Microsoft →<p class="text-[0.5rem] md:text-xs">(Offline 4.8G .img)</p></button>
+                    
                     <button type="button" class="rounded-xl w-full bg-[#E94F37] my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ok">Activate Office →<p class="text-[0.5rem] md:text-xs">admin required</p></button>
                 </div>
                 
@@ -55,6 +58,12 @@
         ipcRenderer.send("downloadOffice19");
 
     });
+
+    document.getElementById('downloadonline').addEventListener("click", function(){
+
+ipcRenderer.send("downloadOffice19-o");
+
+});
 
 </script>
 

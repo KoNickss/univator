@@ -581,6 +581,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 80%;
 }
 
+.w-3\/4 {
+  width: 75%;
+}
+
 .w-5\/6 {
   width: 83.333333%;
 }
@@ -887,11 +891,11 @@ p{
 
 .officevercontainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 0px 0px;
+  gap: 0px;
   grid-template-areas: 
-        "twentyone nineteen legacy";
+        "twentyone nineteen";
 }
 
 .twentyone {
