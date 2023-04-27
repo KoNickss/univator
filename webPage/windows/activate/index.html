@@ -46,8 +46,11 @@
     document.getElementById('ok').addEventListener("click", function(){
 
         ipcRenderer.send("activateWindows");
-        location.href = "./done.html";
 
+    });
+
+    ipcRenderer.on('winkmsdone', function(){
+        location.href='./done.html';
     });
 
 </script>

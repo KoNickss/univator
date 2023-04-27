@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white">
+    <div class="ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 items-center justify-center text-center">
+                <p class="text-[2em] pb-6 tracking-wide">Choose Activation Method</p>
+                
+                <div class="text-center text-white w-full items-center">
+                    <div class="kmscontainer w-full items-center text-center" style="column-gap: 200px; padding-left: 8%; padding-right: 8%; vertical-align: top;">
+                        <div class="windows text-left bg-mycol2 rounded-xl px-10 w-full shadow outline-white outline-2">
+                            <button type="button" class="rounded-xl w-full my-2 py-5 my-2 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope] bg-indigo-900" onclick="location.href = './setKMS/index.html';">Online e-KMS →<p class="text-[0.5rem] md:text-xs">7 / 8 / 8.1 / 10 / 11</p></button>
+                            <p class="pb-3 text-lg font-bold">- Non-intrusive</p>
+                            <p class="pb-3 text-lg font-bold">- Easily Reversible (see options)</p>
+                            <p class="pb-3 text-lg font-bold">- Requires connection to e-KMS server every 180 days to refresh</p>
+                            <a onclick="showMore()" id="morebutton1" style="color:cornflowerblue; text-decoration: underline; cursor:pointer; text-align: center;">Show More</a>
+                            <div id="morekms" style="display: none;" class="detaildiv">
+                                <p class="pb-3 text-md font-bold">- Activation Certificate stored locally</p>
+                                <p class="pb-3 text-md font-bold">- Reactivations (performed automatically) WILL ping the server your IP (TCP, duh)
+                                </p>
+                                <p class="pb-3 text-md font-bold">- Does not need to download or install anything extra</p>
+                            </div>
+                            
+                        </div>
+                        <div class="office text-left bg-mycol2 rounded-xl px-10 w-full shadow outline-white outline-2">
+                            <button type="button" class="rounded-xl w-full my-2 py-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope] bg-indigo-900" onclick="location.href = '../winhwid/index.html';">HWID Ticket →<p class="text-[0.5rem] md:text-xs">10 / 11</p></button>
+                            <p class="pb-3 text-lg font-bold">- Requires System Changes</p>
+                            <p class="pb-3 text-lg font-bold">- Entirely Permanent, even on full wipe</p>
+                            <p class="pb-3 text-lg font-bold">- Fully equivalent to digitally bought Windows, transfers to other PCs with this MS acc</p>
+                            <a href="#" onclick="showMore()" id="morebutton2" style="color:cornflowerblue; text-decoration: underline; cursor: pointer; padding-inline: auto;">Show More</a>
+                            <div id="morehwid" style="display: none;" class="detaildiv">
+                                <p class="pb-3 text-md font-bold">- Digital Activation Certificate stored on Microsoft Servers Forever</p>
+                                <p class="pb-3 text-md font-bold">- Needs to download and modify an exe (gatherosstate.exe)found on win ISOs used for win7 migration</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+    <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = '../index.html';">
+            <span class="hidden md:inline">Back</span>
+        
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    const morehwid = document.getElementById('morehwid');
+    const morekms = document.getElementById('morekms');
+
+    const morebutton1 = document.getElementById('morebutton1');
+    const morebutton2 = document.getElementById('morebutton2');
+
+    function showMore(){
+        document.getElementById('morebutton1').style.display = "none";
+        document.getElementById('morebutton2').style.display = "none";
+
+        document.getElementById('morehwid').style.display = "block";
+        document.getElementById('morekms').style.display = "block";
+        console.log("O@O");
+    }
+
+</script>
+
+</html>

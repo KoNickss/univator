@@ -3,8 +3,10 @@ const { exec } = require('child_process')
 const path = require('path')
 const { stringify } = require('querystring')
 
+let win = null;
+
 const createWindow = () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1100,
     height: 700,
     webPreferences: {
@@ -30,7 +32,12 @@ function getCertDetails(){
 }
 
 function activateWindows(){
-  exec("powershell start-process powershell -verb runas {slmgr /skms " + kmsServer + " ; slmgr /ipk " + windowsProductKey + " ; sleep 3 ; slmgr /ato ; sleep 1 ; start ms-settings:activation}")
+  var activatePROC = exec("powershell start-process powershell -verb runas {cscript C:\\Windows\\System32\\slmgr.vbs /skms " + kmsServer + " > $null ; cscript C:\\Windows\\System32\\slmgr.vbs /ipk " + windowsProductKey + " > $null ; sleep 3 ; cscript C:\\Windows\\System32\\slmgr.vbs /ato ; sleep 1 ; start ms-settings:activation}")
+
+  activatePROC.on('close', _ => {
+    win.webContents.send('winkmsdone')
+  })
+
   //dialog.showErrorBox('Transparency Mode Command:', 'RUN THIS: powershell start-process powershell -verb runas {slmgr /skms ' + kmsServer + ' ; slmgr /ipk ' + productKey + ' ; sleep 3 ; slmgr /ato}') 
 }
 

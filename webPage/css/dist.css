@@ -549,6 +549,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .inline {
   display: inline;
 }
@@ -634,6 +638,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(22 21 36 / var(--tw-bg-opacity));
 }
 
+.bg-indigo-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#D0E7A6\] {
   --tw-bg-opacity: 1;
   background-color: rgb(208 231 166 / var(--tw-bg-opacity));
@@ -647,11 +656,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#E94F37\] {
   --tw-bg-opacity: 1;
   background-color: rgb(233 79 55 / var(--tw-bg-opacity));
-}
-
-.bg-indigo-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\.\.\/img\/bground1\.jpg\'\)\] {
@@ -701,6 +705,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1.25rem;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -720,6 +729,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pl-5 {
   padding-left: 1.25rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -746,6 +767,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-\[0\.5rem\] {
   font-size: 0.5rem;
+}
+
+.text-\[2em\] {
+  font-size: 2em;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-xl {
@@ -788,12 +818,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .outline {
   outline-style: solid;
 }
 
 .outline-0 {
   outline-width: 0px;
+}
+
+.outline-2 {
+  outline-width: 2px;
 }
 
 .outline-white {
@@ -1014,6 +1054,10 @@ button{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.40);
   transition: transform .1s;
   outline: none;
+}
+
+.shadow{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.40);
 }
 
 button:hover{

@@ -122,6 +122,10 @@ button{
     outline: none;
 }
 
+.shadow{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.40);
+}
+
 button:hover{
     transform: scale(1.06);
 }
