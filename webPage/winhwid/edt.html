@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white" bg-[url('../../img/bground1.jpg')]>
+    <div class="md:max-w-[70vw] ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 md:w-2/3 items-center justify-center text-center">
+                <p class="text-3xl pb-10 font-extrabold tracking-wide">Product Key Gen</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Select the appropriate windows edition you have</p>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10">Press the button to automatically download and generate "gatherosstatemodified.exe"</p>
+                <p><a id="settings" style="color:cornflowerblue; text-decoration: underline; cursor:pointer;">I don't know my windows edition</a></p>
+                
+                <div class="text-center text-white">
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="home">Home</button>
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="pro">Pro</button>
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="edu">Education</button>
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ent">Enterprise</button>
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+    <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
+       
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-mycol2 px-3 md:px-7 outline-0  outline-white hover:bg-indigo-900 mx-2" onclick="location.href = './index.html';">
+            <span class="hidden md:inline">Back</span>
+        </button>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron');
+
+    document.getElementById("home").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "YTMG3-N6DKC-DKB77-7M9GH-8HVX7");
+        location.href = "genexe.html";
+    });
+
+    document.getElementById("pro").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "VK7JG-NPHTM-C97JM-9MPGT-3V66T");
+        location.href = "genexe.html";
+    });
+
+    document.getElementById("edu").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "YNMGQ-8RYV3-4PGQ3-C8XTP-7CFBY");
+        location.href = "genexe.html";
+    });
+
+    document.getElementById("ent").addEventListener("click", function(){
+        ipcRenderer.send("setIPK", "XGVPP-NMH47-7TTHJ-W3FW7-8HV2C");
+        location.href = "genexe.html";
+    });
+    document.getElementById("settings").addEventListener("click", function(){
+        ipcRenderer.send("activationSettings");
+    });
+
+
+</script>
+
+</html>

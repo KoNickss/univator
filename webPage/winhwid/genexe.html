@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white" bg-[url('../../img/bground1.jpg')]>
+    <div class="ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 w-5/6 items-center justify-center text-center">
+                <p class="text-3xl pb-10 font-extrabold tracking-wide" id="title">Download and Generate gatherosstate.exe</p>
+                <div class="text-center text-white" id="okdiv">
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ok">Start →</button>
+                    
+                </div>
+                <p class="text-md md:text-xl font-normal tracking-wide pb-10" style="display: none;" id="label">Mirror: <span class="bold underline bg-white text-black">[https://download.microsoft.com/download/9/A/E/9AE69DD5-BA93-44E0-864E-180F5E700AB4/adk/Installers/14f4df8a2a7fc82a4f415cf6a341415d.cab]</span><br /><br /></p>
+
+                <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope] hidden" id="next" onclick="location.href = './genticket.html';">Continue →</button>
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron');
+
+    document.getElementById('ok').addEventListener('click', () => {
+        ipcRenderer.send('downloadexe');
+        document.getElementById('okdiv').style.display = 'none';
+        document.getElementById('label').style.display = 'block';
+        document.getElementById('title').innerHTML = 'Downloading...';
+    });
+
+    ipcRenderer.on('exeDownloadOk', () => {
+        document.getElementById('label').innerHTML = 'Extracting and generating "gatherosstatemodified.exe"';
+        document.getElementById('title').innerHTML = 'Generating...';
+        ipcRenderer.send('genexe');
+    });
+
+    ipcRenderer.on('exeGenOk', () => {
+        document.getElementById('title').innerHTML = 'DONE!';
+        document.getElementById('next').style.display = 'block';
+
+    });
+
+    ipcRenderer.on('exeDownloadErr', () => {
+        document.getElementById('label').innerHTML += '<br /><span style="font-family: monospace; background-color: red;">[ERROR DOWNLOADING FILE / FILE CORRUPTED (SHA256) / NOT ON WINDOWS]</span>';
+        document.getElementById('title').innerHTML = 'ERROR';
+    });
+
+    ipcRenderer.on('exeGenErr', () => {
+        document.getElementById('label').innerHTML += '<br /><span style="font-family: monospace; background-color: red;">[ERROR GENERATING FILE / FILE CORRUPTED (SHA256) / NOT ON WINDOWS]</span>';
+        document.getElementById('title').innerHTML = 'ERROR';
+    });
+
+    ipcRenderer.on('stdout', (event, data) => {
+        document.getElementById('label').innerHTML += ('<br /><span style="font-family: monospace; background-color: black;">' + String(data).replace('"', '').replace('Y', '<span class=oppositec>').replace('Z', '</span>') + '</span>');
+    });
+    ipcRenderer.on('stderr', (event, data) => {
+        document.getElementById('label').innerHTML += ('<br /><span style="font-family: monospace; background-color: red;">' + String(data) + '</span>');
+    });
+
+</script>
+
+</html>

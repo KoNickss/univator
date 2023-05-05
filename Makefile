@@ -3,10 +3,10 @@ all: linux windows node_modules
 node_modules:
 	npm install
 
-linux:
+linux: node_modules
 	npx electron-builder build --linux appImage
 
-windows:
+windows: node_modules
 	npx electron-builder build --win portable
 
 

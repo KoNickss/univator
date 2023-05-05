@@ -1,7 +1,9 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron')
 const { exec } = require('child_process')
 const path = require('path')
-const { stringify } = require('querystring')
+const { fstat } = require('fs')
+const fs = require('fs')
+const crypto = require('crypto')
 
 let win = null;
 
@@ -12,7 +14,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: false,
+      devTools: true,
     },
     autoHideMenuBar: true
   })
@@ -86,6 +88,88 @@ function activationSettings(){
   exec("start ms-settings:activation");
 }
 
+function downloadExe(){
+
+  if(fs.existsSync('C:\\Users\\Public\\ActTicket\\14f4df8a2a7fc82a4f415cf6a341415d.cab')){
+    var exeStream = fs.readFileSync('C:\\Users\\Public\\ActTicket\\14f4df8a2a7fc82a4f415cf6a341415d.cab')
+    var checksum = crypto.createHash('sha256').update(exeStream).digest('hex')
+
+    if(checksum.toLowerCase() === '24399eb37ca3e935ab5aa8e501fea950f99ff25565553b7641598d85b3cf381d'){
+      win.webContents.send('exeDownloadOk')
+      return
+    }
+  }
+
+  let exeDownProc = exec('powershell mkdir C:\\Users\\Public\\ActTicket & cd C:\\Users\\Public\\ActTicket & echo "Y -> Downloading binary archive .cab file from microsoft Z" & powershell wget -UseBasicParsing -Uri https://download.microsoft.com/download/9/A/E/9AE69DD5-BA93-44E0-864E-180F5E700AB4/adk/Installers/14f4df8a2a7fc82a4f415cf6a341415d.cab -Outfile .\\14f4df8a2a7fc82a4f415cf6a341415d.cab ')
+
+  exeDownProc.stdout.on('data', (data) => {
+    win.webContents.send('stdout', String(data))
+  })
+
+  exeDownProc.stderr.on('data', (data) => {
+    win.webContents.send('stderr', String(data))
+  })
+
+  exeDownProc.on('close', () => {
+    if(fs.existsSync('C:\\Users\\Public\\ActTicket\\14f4df8a2a7fc82a4f415cf6a341415d.cab')){
+      var exeStream = fs.readFileSync('C:\\Users\\Public\\ActTicket\\14f4df8a2a7fc82a4f415cf6a341415d.cab')
+      var checksum = crypto.createHash('sha256').update(exeStream).digest('hex')
+      win.webContents.send('stdout', checksum)
+      win.webContents.send('stdout', "EXPECTED CHECKSUM (SHA256, HEX): 1f6e56a5467ab472c915cd98b4e93226182684358ca1cdc14ec3bbb2e584b3e7")
+      if(checksum.toLowerCase() === '24399eb37ca3e935ab5aa8e501fea950f99ff25565553b7641598d85b3cf381d'){
+        win.webContents.send('exeDownloadOk')
+      }else{
+        win.webContents.send('exeDownloadErr')
+      }
+    }else{
+      win.webContents.send('exeDownloadErr')
+    }
+  })
+
+}
+
+function genExe(){
+
+
+  if(fs.existsSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')){
+    var exeStream = fs.readFileSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')
+    var checksum = crypto.createHash('sha256').update(exeStream).digest('hex')
+    win.webContents.send('stdout', checksum)
+    if(checksum.toLowerCase() === '1f6e56a5467ab472c915cd98b4e93226182684358ca1cdc14ec3bbb2e584b3e7'){
+      win.webContents.send('exeGenOk')
+      return
+    }
+  }
+
+  let exeGenProc = exec('powershell cd C:\\Users\\Public\\ActTicket ; echo "Y-> EXTRACTING GATHEROSSTATE.EXE Z" ; expand .\\14f4df8a2a7fc82a4f415cf6a341415d.cab -F:filf8377e82b29deadca67bc4858ed3fba9 . ; powershell mv .\\filf8377e82b29deadca67bc4858ed3fba9 .\\gatherosstate.exe ; echo "*Modifying Binary Code To Enable Exploit, credit to GamerOSState*" & powershell "" $bytes  = [System.IO.File]::ReadAllBytes("""C:\\Users\\Public\\ActTicket\\gatherosstate.exe""") ; $bytes[320] = 0xf8 ; $bytes[321] = 0xfb ; $bytes[322] = 0x05 ; $bytes[324] = 0x03 ; $bytes[13672] = 0x25 ; $bytes[13674] = 0x73 ; $bytes[13676] = 0x3b ; $bytes[13678] = 0x00 ; $bytes[13680] = 0x00 ; $bytes[13682] = 0x00 ; $bytes[13684] = 0x00 ; $bytes[32748] = 0xe9 ; $bytes[32749] = 0x9e ; $bytes[32750] = 0x00 ; $bytes[32751] = 0x00 ; $bytes[32752] = 0x00 ; $bytes[32894] = 0x8b ; $bytes[32895] = 0x44 ; $bytes[32897] = 0x64 ; $bytes[32898] = 0x85 ; $bytes[32899] = 0xc0 ; $bytes[32900] = 0x0f ; $bytes[32901] = 0x85 ; $bytes[32902] = 0x1c ; $bytes[32903] = 0x02 ; $bytes[32904] = 0x00 ; $bytes[32906] = 0xe9 ; $bytes[32907] = 0x3c ; $bytes[32908] = 0x01 ; $bytes[32909] = 0x00 ; $bytes[32910] = 0x00 ; $bytes[32911] = 0x85 ; $bytes[32912] = 0xdb ; $bytes[32913] = 0x75 ; $bytes[32914] = 0xeb ; $bytes[32915] = 0xe9 ; $bytes[32916] = 0x69 ; $bytes[32917] = 0xff ; $bytes[32918] = 0xff ; $bytes[32919] = 0xff ; $bytes[33094] = 0xe9 ; $bytes[33095] = 0x80 ; $bytes[33096] = 0x00 ; $bytes[33097] = 0x00 ; $bytes[33098] = 0x00 ; $bytes[33449] = 0x64 ; $bytes[33576] = 0x8d ; $bytes[33577] = 0x54 ; $bytes[33579] = 0x24 ; $bytes[33580] = 0xe9 ; $bytes[33581] = 0x55 ; $bytes[33582] = 0x01 ; $bytes[33583] = 0x00 ; $bytes[33584] = 0x00 ; $bytes[33978] = 0xc3 ; $bytes[34189] = 0x59 ; $bytes[34190] = 0xeb ; $bytes[34191] = 0x28 ; $bytes[34238] = 0xe9 ; $bytes[34239] = 0x4f ; $bytes[34240] = 0x00 ; $bytes[34241] = 0x00 ; $bytes[34242] = 0x00 ; $bytes[34346] = 0x24 ; $bytes[34376] = 0xeb ; $bytes[34377] = 0x63 ; [System.IO.File]::WriteAllBytes("""C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe""", $bytes) "" & echo "-> Set exe Compatiblility Mode to xpsp3 in Registry" & powershell start-process powershell -verb runas { reg.exe Add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Users\Public\ActTicket\gatherosstatemodified.exe" /d "WINXPSP3" /f } & echo "Y -> File gatherosstatemodified.exe has now been sucesfully pacified and should output DownLevel tickets regardless or conditions met Z"')
+
+  exeGenProc.stdout.on('data', (data) => {
+    win.webContents.send('stdout', String(data))
+  })
+
+  exeGenProc.stderr.on('data', (data) => {
+    win.webContents.send('stderr', String(data))
+  })
+
+  exeGenProc.on('close', () => {
+    exec('powershell {reg.exe Add `HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers` /v "C:\\ProgramData\\ActTicket\\gatherosstatemodified.exe" /d "WINXPSP3" /f ; echo "`n=======> Put file (gatherosstatemodified.exe) in Windows XP SP3 compatibility mode`n" ; pause}')
+
+    if(fs.existsSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')){
+      var exeStream = fs.readFileSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')
+      var checksum = crypto.createHash('sha256').update(exeStream).digest('hex')
+      win.webContents.send('stdout', checksum)
+      if(checksum.toLowerCase() === '1f6e56a5467ab472c915cd98b4e93226182684358ca1cdc14ec3bbb2e584b3e7'){
+        win.webContents.send('exeGenOk')
+      }else{
+        win.webContents.send('exeGenErr')
+      }
+    }else{
+      win.webContents.send('exeGenErr')
+    }
+
+  })
+}
+
 ipcMain.on("getCertDetails", getCertDetails)
 
 ipcMain.on("setKMS", (event, response) => {
@@ -117,6 +201,10 @@ ipcMain.on("uninstallCert", uninstallCert)
 ipcMain.on("openServerPage", openServerPage)
 
 ipcMain.on("activationSettings", activationSettings)
+
+ipcMain.on("downloadexe", downloadExe)
+
+ipcMain.on("genexe", genExe)
 
 app.whenReady().then(() => {
   createWindow()

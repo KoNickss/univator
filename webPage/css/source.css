@@ -146,3 +146,14 @@ button:hover{
 	width: 80%;
 	max-width: 700px;
 }
+
+.oppositec{
+    color: black;
+    background-color: white;
+}
+
+.oppositecx{
+    color: black;
+    background-color: white;
+    font-size: large;
+}

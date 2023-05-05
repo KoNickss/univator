@@ -12,5 +12,8 @@
   "devDependencies": {
     "electron": "^24.1.0",
     "electron-builder": "^24.2.0"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1"
   }
 }
