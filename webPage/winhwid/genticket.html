@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/dist.css" rel="stylesheet">
+  <title>Univator</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+<div class="flex min-h-[100vh] justify-center items-center text-white" bg-[url('../../img/bground1.jpg')]>
+    <div class="ml-auto mr-auto">
+        
+        <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
+            <div class="my-5 w-5/6 items-center justify-center text-center max-w-3/4">
+                <p class="text-3xl pb-10 font-extrabold tracking-wide" id="title">Generate Activation Request Ticket</p>
+                <div class="text-center text-white" id="okdiv">
+                    <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope]" id="ok">Generate →</button>
+                    
+                </div>
+                
+                <textarea class="rounded-2xl text-xl monospace bg-white text-black hidden" id="txtbox" cols="38" rows="10" style="font-family: monospace; display: none; margin-left: auto; margin-right: auto;">[GENERATED TICKET WILL APPEAR HERE]</textarea>
+
+                <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope] hidden" id="next" onclick="location.href = './done.html';">Install Ticket and Activate Windows (Permanent) →<p class="text-[0.5rem] md:text-xs">admin required</p></button>
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+</div>
+
+</body>
+
+<script>
+
+    const { ipcRenderer } = require('electron');
+
+    const txtbox = document.getElementById('txtbox');
+    const okbut = document.getElementById('ok');
+    const nextbut = document.getElementById('next');
+
+    okbut.addEventListener('click', () => {
+        ipcRenderer.send('genTicket');
+        okbut.style.display = 'none';
+        
+    });
+
+    ipcRenderer.on('ticketout', (ticket) => {
+        txtbox.textContent = String(ticket);
+        nextbut.style.display = 'block';
+        txtbox.style.display = 'block';
+    });
+
+    nextbut.addEventListener('click', () => {
+        ipcRenderer.send('installTicket');
+    })
+
+</script>
+
+</html>
