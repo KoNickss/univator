@@ -19,7 +19,7 @@
                     
                 </div>
                 
-                <textarea class="rounded-2xl text-xl monospace bg-white text-black hidden" id="txtbox" cols="38" rows="10" style="font-family: monospace; display: none; margin-left: auto; margin-right: auto;">[GENERATED TICKET WILL APPEAR HERE]</textarea>
+                <textarea class="rounded-2xl text-sm monospace bg-white text-black hidden" id="txtbox" cols="55" rows="15" style="font-family: monospace; display: none; margin-left: auto; margin-right: auto;">[GENERATED TICKET WILL APPEAR HERE]</textarea>
 
                 <button type="button" class="rounded-xl w-full bg-indigo-900 my-2 py-5 my-2 px-5 text-sm md:text-xl font-bold tracking-wide justify-center items-center font-[manrope] hidden" id="next" onclick="location.href = './done.html';">Install Ticket and Activate Windows (Permanent) →<p class="text-[0.5rem] md:text-xs">admin required</p></button>
             </div>
@@ -48,8 +48,9 @@
         
     });
 
-    ipcRenderer.on('ticketout', (ticket) => {
-        txtbox.textContent = String(ticket);
+    ipcRenderer.on('ticketout', (event, ticket) => {
+        txtbox.textContent = String(ticket).toString();
+        console.log(ticket);
         nextbut.style.display = 'block';
         txtbox.style.display = 'block';
     });
