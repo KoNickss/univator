@@ -14,7 +14,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: false,
+      devTools: true,
     },
     autoHideMenuBar: true
   })
@@ -152,7 +152,7 @@ function genExe(){
   })
 
   exeGenProc.on('close', () => {
-    exec('powershell start-process powershell -verb runas {reg Add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\` NT\\CurrentVersion\\AppCompatFlags\\Layers /v "C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe" /d "WINXPSP3" ; pause }')
+    exec('powershell start-process powershell -verb runas {reg Add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\` NT\\CurrentVersion\\AppCompatFlags\\Layers /v "C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe" /d "WINXPSP3" }')
 
     if(fs.existsSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')){
       var exeStream = fs.readFileSync('C:\\Users\\Public\\ActTicket\\gatherosstatemodified.exe')
@@ -171,11 +171,11 @@ function genExe(){
 }
 
 function runIpk(){
-  exec('powershell start-process powershell -verb runas { cscript C:\\Windows\\System32\\slmgr.vbs /ipk ' + windowsProductKey + ' ; pause }')
+  exec('powershell start-process powershell -verb runas { cscript C:\\Windows\\System32\\slmgr.vbs /ipk ' + windowsProductKey + ' }')
 }
 
 function genTicket(){
-  let tickGenProc = exec('powershell "cd C:\\Users\\Public\\ActTicket ; $value = (Get-ItemProperty HKLM:\\SYSTEM\\CurrentControlSet\\Control\\ProductOptions).OSProductPfn ; .\\gatherosstatemodified.exe /c Pfn=$value`;DownlevelGenuineState=1 ; sleep 1" & type C:\\Users\\Public\\ActTicket\\GenuineTicket.xml')
+  let tickGenProc = exec('powershell "cd C:\\Users\\Public\\ActTicket ; $value = (Get-ItemProperty HKLM:\\SYSTEM\\CurrentControlSet\\Control\\ProductOptions).OSProductPfn ; .\\gatherosstatemodified.exe /c Pfn=$value`;PKeyIID=465145217131314304264339481117862266242033457260311819664735280 ; sleep 1" & type C:\\Users\\Public\\ActTicket\\GenuineTicket.xml')
 
   tickGenProc.stdout.on('data', (data) => {
     win.webContents.send('ticketout', String(data))
@@ -184,7 +184,7 @@ function genTicket(){
 }
 
 function installTicket(){
-  exec('powershell start-process powershell -verb runas { clipup -v -o -altto C:\\Users\\Public\\ActTicket ; cscript C:\\Windows\\System32\\slmgr.vbs /ato ; echo `n`n`nWINDOWS ACTIVATED SUCCESFULLY ; start ms-settings:activation ; pause }')
+  exec('powershell start-process powershell -verb runas { clipup -v -o -altto C:\\Users\\Public\\ActTicket ; cscript C:\\Windows\\System32\\slmgr.vbs /ato ; echo `n`n`nWINDOWS ACTIVATED SUCCESFULLY ; start ms-settings:activation }')
 }
 
 ipcMain.on("getCertDetails", getCertDetails)

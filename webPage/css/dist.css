@@ -846,6 +846,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   outline-width: 0px;
 }
 
+.outline-8 {
+  outline-width: 8px;
+}
+
 .outline-2 {
   outline-width: 2px;
 }
