@@ -26,6 +26,7 @@ const createWindow = () => {
 
 var windowsProductKey = "";
 var kmsServer = "";
+var officeProductKey = "";
 
 
 function getCertDetails(){
@@ -59,6 +60,10 @@ function activateOffice19(){
 
 }
 
+function activateOfficeOHOOK(){
+  exec("powershell start-process powershell -verb runas { mkdir C:\\Users\\Public\\ohook ; cd C:\\Users\\Public\\ohook ; wget -UseBasicParsing -Uri https://github.com/asdcorp/ohook/releases/download/0.3/ohook_0.3.zip -OutFile ohook.zip ; Expand-Archive ohook.zip ; cd ohook ; cmd /c mklink '%ProgramFiles%\\Microsoft Office\\root\\vfs\\System\\sppcs.dll' '%windir%\\System32\\sppc.dll' ; cmd /c copy /y sppc64.dll '%ProgramFiles%\\Microsoft Office\\root\\vfs\\System\\sppc.dll' ; reg add HKCU\\Software\\Microsoft\\Office\\16.0\\Common\\Licensing\\Resiliency /v 'TimeOfLastHeartbeatFailure' /t REG_SZ /d '2040-01-01T00:00:00Z' /f ; slmgr /ipk " + officeProductKey + "}")
+}
+
 function downloadOffice21(){
   shell.openExternal("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2021Retail.img")
 }
@@ -73,6 +78,14 @@ function downloadOffice19(){
 
 function downloadOffice19_o(){
   shell.openExternal("https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=en-us&version=O16GA")
+}
+
+function downloadOffice365(){
+  shell.openExternal("https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/O365ProPlusRetail.img")
+}
+
+function downloadOffice365_o(){
+  shell.openExternal("https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=en-us&version=O16GA")
 }
 
 function openServerPage(){
@@ -197,6 +210,11 @@ ipcMain.on("setIPK", (event, response) => {
   windowsProductKey = response
 })
 
+ipcMain.on("activateOfficeOHOOK", (event, response) => {
+  officeProductKey = response
+  activateOfficeOHOOK()
+})
+
 ipcMain.on("activateWindows", activateWindows)
 
 ipcMain.on("activateOffice16", activateOffice16)
@@ -212,6 +230,10 @@ ipcMain.on("downloadOffice21-o", downloadOffice21_o)
 ipcMain.on("downloadOffice19", downloadOffice19)
 
 ipcMain.on("downloadOffice19-o", downloadOffice19_o)
+
+ipcMain.on("downloadOffice365", downloadOffice365)
+
+ipcMain.on("downloadOffice365-o", downloadOffice365_o)
 
 ipcMain.on("uninstallCert", uninstallCert)
 

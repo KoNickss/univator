@@ -13,7 +13,7 @@
         
         <div class="min-w-[60vw] rounded-3xl flex flex-wrap sm:flex-nowrap items-center py-10 sm:py-100 px-8 pb-10 justify-center text-center">
             <div class="my-5 md:w-2/3 items-center justify-center text-center">
-                <p class="text-3xl pb-10 font-extrabold tracking-wide">Install Office 2019.</p>
+                <p class="text-3xl pb-10 font-extrabold tracking-wide">Install Microsoft 365.</p>
                 <p class="text-md md:text-xl font-normal tracking-wide pb-10">After downloading the .img file, open it and run 'Setup', after installation is done you can activate it using the tool below</p>
                 
                 <div class="text-center text-white">
@@ -34,7 +34,7 @@
 
     <div class="text-white bold fixed bottom-4 flex flex-row flex-wrap sm:flex-nowrap items-center mx-50 justify-center ml-auto mr-auto mx-100 px-2 pt-100 text-md bg-purple md:bg-transparent">
        
-        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-[#283F3B] px-3 md:px-7 outline-0  outline-white hover:bg-[#283F3B] mx-2" onclick="location.href = '../setKMS/index.html';">
+        <button type="button" class="redir outline rounded-md py-1 md:py-3 bg-[#283F3B] px-3 md:px-7 outline-0  outline-white hover:bg-[#283F3B] mx-2" onclick="location.href = '../ver/index.html';">
             <span class="hidden md:inline">Back</span>
         </button>
     </div>
@@ -49,19 +49,19 @@
 
     document.getElementById('ok').addEventListener("click", function(){
 
-        ipcRenderer.send("activateOffice19");
+        ipcRenderer.send("activateOfficeOHOOK", "2N382-D6PKK-QTX4D-2JJYK-M96P2");
 
     });
 
     document.getElementById('download').addEventListener("click", function(){
 
-        ipcRenderer.send("downloadOffice19");
+        ipcRenderer.send("downloadOffice365");
 
     });
 
     document.getElementById('downloadonline').addEventListener("click", function(){
 
-ipcRenderer.send("downloadOffice19-o");
+ipcRenderer.send("downloadOffice365-o");
 
 });
 
